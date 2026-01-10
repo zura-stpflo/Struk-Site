@@ -1,14 +1,14 @@
 [
   {
     "id": "STR-1001",
-    "sellerName": "ᴀʟᴇx ʜᴏsᴛɪɴɢ",
+    "sellerName": "á´Êá´x Êá´sá´ÉªÉ´É¢",
     "companyName": "Alex Store",
     "date": "2026-01-10T14:51:44.953Z",
     "dateFormatted": "10/1/2026",
     "timeFormatted": "21.51.44",
     "items": [
       {
-        "name": "ᴘᴀɴᴇʟ ᴜɴʟɪ",
+        "name": "á´á´É´á´Ê á´É´ÊÉª",
         "price": 10000,
         "quantity": 1,
         "subtotal": 10000
@@ -20,5 +20,27 @@
     "change": 0,
     "paymentStatus": "lunas",
     "savedAt": "2026-01-10T14:51:44.953Z"
+  },
+  {
+    "id": "STR-1002",
+    "sellerName": "ᴀʟᴇx ʜᴏsᴛɪɴɢ",
+    "companyName": "Alex JB ",
+    "date": "2026-01-10T20:51:30.418Z",
+    "dateFormatted": "11/1/2026",
+    "timeFormatted": "03.51.30",
+    "items": [
+      {
+        "name": "VPS R16 C8",
+        "price": 60000,
+        "quantity": 1,
+        "subtotal": 60000
+      }
+    ],
+    "totalItems": 1,
+    "totalPrice": 60000,
+    "cashPaid": 60000,
+    "change": 0,
+    "paymentStatus": "lunas",
+    "savedAt": "2026-01-10T20:51:30.431Z"
   }
 ]
