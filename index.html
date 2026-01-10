@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struk Generator Perbelanjaan Modern</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(90deg, #2c3e50, #4a6491);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .input-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .preview-section {
+            flex: 1;
+            min-width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a6491;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #4a6491;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #4a6491;
+            box-shadow: 0 0 0 2px rgba(74, 100, 145, 0.2);
+            outline: none;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        .items-container {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .item-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .item-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .item-name {
+            flex: 3;
+        }
+
+        .item-price {
+            flex: 2;
+        }
+
+        .item-qty {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #4a6491;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3a5379;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-remove-item {
+            padding: 8px 12px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-remove-item:hover {
+            background: #c82333;
+        }
+
+        .payment-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .summary-row.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #4a6491;
+        }
+
+        .receipt {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #333;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: #4a6491;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .seller-name {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .receipt-details {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #333;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .items-list {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        .receipt-footer {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 2px dashed #333;
+        }
+
+        .status-lunas {
+            color: #28a745;
+            font-weight: 700;
+            padding: 5px 10px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .status-belum {
+            color: #dc3545;
+            font-weight: 700;
+            padding: 5px 10px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .thank-you {
+            font-style: italic;
+            margin-top: 15px;
+            color: #4a6491;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .action-buttons .btn {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .github-info {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .github-info a {
+            color: #4a9eff;
+            text-decoration: none;
+        }
+
+        .github-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .github-config {
+            background: #f0f8ff;
+            border-left: 4px solid #4a6491;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .github-config h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons .btn {
+                min-width: 100%;
+            }
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .loading.active {
+            display: flex;
+        }
+
+        .spinner {
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 5px solid #4a6491;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.5s;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.info {
+            background: #17a2b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-receipt"></i> Struk Generator Perbelanjaan</h1>
+            <p>Buat struk belanja modern dengan mudah dan cepat.</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Bagian Input Data -->
+            <section class="input-section">
+                <h2 class="section-title"><i class="fas fa-edit"></i> Input Data Struk</h2>
+                
+                
+                <div class="form-group">
+                    <label for="sellerName"><i class="fas fa-user"></i> Nama Penjual</label>
+                    <input type="text" id="sellerName" class="form-control" placeholder="Masukkan nama penjual">
+                </div>
+                
+                <div class="form-group">
+                    <label for="companyName"><i class="fas fa-building"></i> Nama Perusahaan</label>
+                    <input type="text" id="companyName" class="form-control" placeholder="Masukkan nama perusahaan">
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label for="receiptNumber"><i class="fas fa-hashtag"></i> Nomor Struk</label>
+                        <input type="text" id="receiptNumber" class="form-control" placeholder="Nomor struk otomatis" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="paymentStatus"><i class="fas fa-check-circle"></i> Status Pembayaran</label>
+                        <select id="paymentStatus" class="form-control">
+                            <option value="lunas">Lunas</option>
+                            <option value="belum">Belum Lunas</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="font-size: 1.2rem; margin-top: 25px;"><i class="fas fa-shopping-cart"></i> Item Belanja</h3>
+                
+                <div class="items-container" id="itemsContainer">
+                    <!-- Item akan ditambahkan di sini secara dinamis -->
+                    <div class="item-row">
+                        <div class="item-name">
+                            <input type="text" class="form-control item-name-input" placeholder="Nama barang">
+                        </div>
+                        <div class="item-price">
+                            <input type="number" class="form-control item-price-input" placeholder="Harga" min="0">
+                        </div>
+                        <div class="item-qty">
+                            <input type="number" class="form-control item-qty-input" placeholder="Qty" value="1" min="1">
+                        </div>
+                        <button class="btn-remove-item" onclick="removeItem(this)"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-secondary" onclick="addItem()"><i class="fas fa-plus"></i> Tambah Item</button>
+                
+                <div class="payment-summary">
+                    <div class="summary-row">
+                        <span>Total Barang:</span>
+                        <span id="totalItems">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Harga:</span>
+                        <span id="totalPrice">Rp 0</span>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label for="cashPaid"><i class="fas fa-money-bill-wave"></i> Uang Dibayarkan</label>
+                        <input type="number" id="cashPaid" class="form-control" placeholder="Masukkan jumlah uang yang dibayarkan">
+                    </div>
+                    <div class="summary-row total">
+                        <span>Kembalian:</span>
+                        <span id="changeAmount">Rp 0</span>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="updateReceipt()"><i class="fas fa-sync-alt"></i> Perbarui Struk</button>
+                    <button class="btn btn-success" onclick="saveToGitHub()"><i class="fas fa-check"></i> Simpan Struk</button>
+                </div>
+            </section>
+            
+            <!-- Bagian Preview Struk -->
+            <section class="preview-section">
+                <h2 class="section-title"><i class="fas fa-receipt"></i> Preview Struk</h2>
+                
+                <div class="receipt" id="receiptPreview">
+                    <!-- Struk akan ditampilkan di sini -->
+                    <div class="receipt-header">
+                        <div class="logo-placeholder">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="company-name">Nama Perusahaan</div>
+                        <div class="seller-name">Nama Penjual</div>
+                    </div>
+                    
+                    <div class="receipt-details">
+                        <div class="detail-row">
+                            <span>No. Struk:</span>
+                            <span><strong>STR-1001</strong></span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Tanggal:</span>
+                            <span>Hari, DD Bulan YYYY</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Waktu:</span>
+                            <span>00:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="items-list">
+                        <div class="receipt-item" style="font-weight: bold; border-bottom: 1px solid #333;">
+                            <span>Item</span>
+                            <span>Total</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span>Isi data untuk melihat preview</span>
+                            <span>Rp 0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-details">
+                        <div class="detail-row">
+                            <span>Total Barang:</span>
+                            <span>0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Total Harga:</span>
+                            <span><strong>Rp 0</strong></span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Dibayar:</span>
+                            <span>Rp 0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Kembalian:</span>
+                            <span><strong>Rp 0</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-footer">
+                        <div class="status-lunas">
+                            LUNAS
+                        </div>
+                        <div class="thank-you">
+                            Terima kasih telah berbelanja!
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.8rem; color: #777;">
+                            Struk ini dicatat secara digital dan disimpan
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="downloadImage()"><i class="fas fa-download"></i> Unduh Gambar Struk</button>
+                    <button class="btn btn-secondary" onclick="generateNewReceipt()"><i class="fas fa-file-invoice"></i> Buat Struk Baru</button>
+                </div>
+                
+            </section>
+        </div>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p id="loadingText">Menyimpan Struk...</p>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationMessage">Pesan notifikasi</span>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        // ===================== KONFIGURASI GITHUB =====================
+        // GANTI KONFIGURASI INI SESUAI DENGAN SETUP ANDA
+        const GITHUB_CONFIG = {
+            // Token GitHub Personal Access Token
+            // Buat di: https://github.com/settings/tokens
+            // Ceklis "repo" untuk permission
+            token: "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",
+            
+            // Username GitHub Anda
+            username: "zura-stpflo",
+            
+            // Nama repository (harus sudah ada)
+            repo: "Struk-Site",
+            
+            // Nama file untuk menyimpan data struk
+            filename: "struk.json",
+            
+            // Branch yang akan digunakan
+            branch: "main"
+        };
+        // ===================== AKHIR KONFIGURASI =====================
+        
+        // Inisialisasi variabel
+        let receiptCounter = localStorage.getItem('receiptCounter') || 1001;
+        let receipts = JSON.parse(localStorage.getItem('receipts')) || [];
+        let githubFileSHA = null; // Untuk menyimpan SHA file yang ada
+        
+        // Update nomor struk saat halaman dimuat
+        document.getElementById('receiptNumber').value = `STR-${receiptCounter}`;
+        
+        // Update informasi GitHub
+        document.getElementById('repoInfo').textContent = `${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}`;
+        
+        // Cek koneksi GitHub saat halaman dimuat
+        checkGitHubConnection();
+        
+        // Update struk saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            updateReceipt();
+        });
+        
+        // Fungsi untuk menambahkan item baru
+        function addItem() {
+            const itemsContainer = document.getElementById('itemsContainer');
+            const newItemRow = document.createElement('div');
+            newItemRow.className = 'item-row';
+            newItemRow.innerHTML = `
+                <div class="item-name">
+                    <input type="text" class="form-control item-name-input" placeholder="Nama barang">
+                </div>
+                <div class="item-price">
+                    <input type="number" class="form-control item-price-input" placeholder="Harga" min="0">
+                </div>
+                <div class="item-qty">
+                    <input type="number" class="form-control item-qty-input" placeholder="Qty" value="1" min="1">
+                </div>
+                <button class="btn-remove-item" onclick="removeItem(this)"><i class="fas fa-trash"></i></button>
+            `;
+            itemsContainer.appendChild(newItemRow);
+            
+            // Tambahkan event listener untuk input perubahan
+            const inputs = newItemRow.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateReceipt);
+            });
+            
+            updateReceipt();
+        }
+        
+        // Fungsi untuk menghapus item
+        function removeItem(button) {
+            const itemRow = button.closest('.item-row');
+            itemRow.remove();
+            updateReceipt();
+        }
+        
+        // Fungsi untuk memperbarui struk
+        function updateReceipt() {
+            // Ambil data dari input form
+            const sellerName = document.getElementById('sellerName').value || 'Penjual';
+            const companyName = document.getElementById('companyName').value || 'Perusahaan';
+            const receiptNumber = document.getElementById('receiptNumber').value;
+            const paymentStatus = document.getElementById('paymentStatus').value;
+            const cashPaid = parseFloat(document.getElementById('cashPaid').value) || 0;
+            
+            // Ambil item belanja
+            const itemRows = document.querySelectorAll('.item-row');
+            let items = [];
+            let totalItems = 0;
+            let totalPrice = 0;
+            
+            itemRows.forEach(row => {
+                const name = row.querySelector('.item-name-input').value || 'Barang';
+                const price = parseFloat(row.querySelector('.item-price-input').value) || 0;
+                const quantity = parseInt(row.querySelector('.item-qty-input').value) || 1;
+                const subtotal = price * quantity;
+                
+                if (name && price > 0 && quantity > 0) {
+                    items.push({ name, price, quantity, subtotal });
+                    totalItems += quantity;
+                    totalPrice += subtotal;
+                }
+            });
+            
+            // Hitung kembalian
+            const change = cashPaid - totalPrice;
+            
+            // Update ringkasan pembayaran
+            document.getElementById('totalItems').textContent = totalItems;
+            document.getElementById('totalPrice').textContent = formatCurrency(totalPrice);
+            document.getElementById('changeAmount').textContent = formatCurrency(change >= 0 ? change : 0);
+            
+            // Buat tanggal dan waktu sekarang
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const timeStr = now.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Tampilkan struk
+            const receiptPreview = document.getElementById('receiptPreview');
+            receiptPreview.innerHTML = `
+                <div class="receipt-header">
+                    <div class="logo-placeholder">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="company-name">${companyName}</div>
+                    <div class="seller-name">${sellerName}</div>
+                </div>
+                
+                <div class="receipt-details">
+                    <div class="detail-row">
+                        <span>No. Struk:</span>
+                        <span><strong>${receiptNumber}</strong></span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Tanggal:</span>
+                        <span>${dateStr}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Waktu:</span>
+                        <span>${timeStr}</span>
+                    </div>
+                </div>
+                
+                <div class="items-list">
+                    <div class="receipt-item" style="font-weight: bold; border-bottom: 1px solid #333;">
+                        <span>Item</span>
+                        <span>Total</span>
+                    </div>
+                    ${items.length > 0 ? items.map(item => `
+                        <div class="receipt-item">
+                            <span>${item.name} (${item.quantity} x ${formatCurrency(item.price)})</span>
+                            <span>${formatCurrency(item.subtotal)}</span>
+                        </div>
+                    `).join('') : `
+                        <div class="receipt-item">
+                            <span>Tidak ada item</span>
+                            <span>Rp 0</span>
+                        </div>
+                    `}
+                </div>
+                
+                <div class="receipt-details">
+                    <div class="detail-row">
+                        <span>Total Barang:</span>
+                        <span>${totalItems}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Total Harga:</span>
+                        <span><strong>${formatCurrency(totalPrice)}</strong></span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Dibayar:</span>
+                        <span>${formatCurrency(cashPaid)}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Kembalian:</span>
+                        <span><strong>${formatCurrency(change >= 0 ? change : 0)}</strong></span>
+                    </div>
+                </div>
+                
+                <div class="receipt-footer">
+                    <div class="${paymentStatus === 'lunas' ? 'status-lunas' : 'status-belum'}">
+                        ${paymentStatus === 'lunas' ? 'LUNAS' : 'BELUM LUNAS'}
+                    </div>
+                    <div class="thank-you">
+                        Terima kasih telah berbelanja di ${companyName}!
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.8rem; color: #777;">
+                        Struk ini dicatat secara digital dan disimpan
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Fungsi untuk menghasilkan struk baru
+        function generateNewReceipt() {
+            // Increment counter struk
+            receiptCounter++;
+            localStorage.setItem('receiptCounter', receiptCounter);
+            
+            // Reset form
+            document.getElementById('receiptNumber').value = `STR-${receiptCounter}`;
+            document.getElementById('sellerName').value = '';
+            document.getElementById('companyName').value = '';
+            document.getElementById('paymentStatus').value = 'lunas';
+            document.getElementById('cashPaid').value = '';
+            
+            // Reset items
+            const itemsContainer = document.getElementById('itemsContainer');
+            itemsContainer.innerHTML = '';
+            
+            // Tambahkan satu item kosong
+            addItem();
+            
+            // Update struk
+            updateReceipt();
+            
+            showNotification('Struk baru telah dibuat!', 'success');
+        }
+        
+        // Fungsi untuk cek koneksi GitHub
+        async function checkGitHubConnection() {
+            try {
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.filename}`, {
+                    headers: {
+                        'Authorization': `token ${GITHUB_CONFIG.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (response.status === 200) {
+                    const data = await response.json();
+                    githubFileSHA = data.sha;
+                    document.getElementById('githubStatus').innerHTML = '✓ Terhubung (File ditemukan)';
+                    document.getElementById('githubStatus').style.color = '#28a745';
+                    console.log('GitHub file ditemukan, SHA:', githubFileSHA);
+                } else if (response.status === 404) {
+                    document.getElementById('githubStatus').innerHTML = '✓ Terhubung (File baru akan dibuat)';
+                    document.getElementById('githubStatus').style.color = '#17a2b8';
+                    console.log('File belum ada, akan dibuat baru');
+                } else {
+                    throw new Error('Gagal mengakses repository');
+                }
+            } catch (error) {
+                document.getElementById('githubStatus').innerHTML = '✗ Gagal terhubung';
+                document.getElementById('githubStatus').style.color = '#dc3545';
+                console.error('Error checking GitHub connection:', error);
+                showNotification('Gagal terhubung ke GitHub. Periksa konfigurasi.', 'error');
+            }
+        }
+        
+        // Fungsi untuk menyimpan struk ke GitHub
+        async function saveToGitHub() {
+            // Validasi input
+            const sellerName = document.getElementById('sellerName').value;
+            const companyName = document.getElementById('companyName').value;
+            
+            if (!sellerName || !companyName) {
+                showNotification('Harap isi Nama Penjual dan Nama Perusahaan!', 'error');
+                return;
+            }
+            
+            // Tampilkan loading
+            document.getElementById('loadingText').textContent = 'Menyimpan ke GitHub...';
+            document.getElementById('loadingOverlay').classList.add('active');
+            
+            // Kumpulkan data struk
+            const receiptNumber = document.getElementById('receiptNumber').value;
+            const paymentStatus = document.getElementById('paymentStatus').value;
+            const cashPaid = parseFloat(document.getElementById('cashPaid').value) || 0;
+            const now = new Date();
+            
+            // Ambil item belanja
+            const itemRows = document.querySelectorAll('.item-row');
+            let items = [];
+            let totalItems = 0;
+            let totalPrice = 0;
+            
+            itemRows.forEach(row => {
+                const name = row.querySelector('.item-name-input').value || 'Barang';
+                const price = parseFloat(row.querySelector('.item-price-input').value) || 0;
+                const quantity = parseInt(row.querySelector('.item-qty-input').value) || 1;
+                const subtotal = price * quantity;
+                
+                if (name && price > 0 && quantity > 0) {
+                    items.push({ name, price, quantity, subtotal });
+                    totalItems += quantity;
+                    totalPrice += subtotal;
+                }
+            });
+            
+            if (items.length === 0) {
+                document.getElementById('loadingOverlay').classList.remove('active');
+                showNotification('Harap tambahkan minimal 1 item belanja!', 'error');
+                return;
+            }
+            
+            // Buat objek struk
+            const receipt = {
+                id: receiptNumber,
+                sellerName,
+                companyName,
+                date: now.toISOString(),
+                dateFormatted: now.toLocaleDateString('id-ID'),
+                timeFormatted: now.toLocaleTimeString('id-ID'),
+                items,
+                totalItems,
+                totalPrice,
+                cashPaid,
+                change: cashPaid - totalPrice,
+                paymentStatus,
+                savedAt: new Date().toISOString()
+            };
+            
+            // Simpan ke localStorage
+            receipts.push(receipt);
+            localStorage.setItem('receipts', JSON.stringify(receipts));
+            
+            try {
+                // Baca file yang ada di GitHub
+                let existingData = [];
+                
+                try {
+                    const getResponse = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.filename}`, {
+                        headers: {
+                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+                    
+                    if (getResponse.status === 200) {
+                        const data = await getResponse.json();
+                        const content = atob(data.content); // Decode base64
+                        existingData = JSON.parse(content);
+                        githubFileSHA = data.sha;
+                    }
+                } catch (error) {
+                    console.log('File belum ada atau error membaca, akan dibuat baru');
+                }
+                
+                // Tambahkan struk baru ke data yang ada
+                existingData.push(receipt);
+                
+                // Konversi ke JSON dengan format rapi
+                const jsonContent = JSON.stringify(existingData, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(jsonContent)));
+                
+                // Siapkan data untuk API GitHub
+                const apiData = {
+                    message: `Menambahkan struk ${receiptNumber} - ${companyName}`,
+                    content: encodedContent,
+                    branch: GITHUB_CONFIG.branch
+                };
+                
+                // Jika file sudah ada, tambahkan SHA untuk update
+                if (githubFileSHA) {
+                    apiData.sha = githubFileSHA;
+                }
+                
+                // Kirim ke GitHub API
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.filename}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_CONFIG.token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(apiData)
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    githubFileSHA = result.content.sha;
+                    
+                    // Increment counter untuk struk berikutnya
+                    receiptCounter++;
+                    localStorage.setItem('receiptCounter', receiptCounter);
+                    document.getElementById('receiptNumber').value = `STR-${receiptCounter}`;
+                    
+                    // Reset form untuk struk berikutnya
+                    document.getElementById('cashPaid').value = '';
+                    
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    showNotification(`Struk ${receiptNumber} berhasil disimpan!`, 'success');
+                    
+                    // Tampilkan link ke file di GitHub
+                    console.log('Struk disimpan ke:', result.content.html_url);
+                    
+                } else {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Gagal menyimpan Data Struk');
+                }
+                
+            } catch (error) {
+                console.error('Error saving struk:', error);
+                document.getElementById('loadingOverlay').classList.remove('active');
+                showNotification(`Gagal menyimpan data struk: ${error.message}`, 'error');
+            }
+        }
+        
+        // Fungsi untuk mengunduh gambar struk
+        function downloadImage() {
+            const receiptElement = document.getElementById('receiptPreview');
+            
+            html2canvas(receiptElement, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `struk-${document.getElementById('receiptNumber').value}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                showNotification('Gambar struk berhasil diunduh!', 'success');
+            }).catch(error => {
+                console.error('Error generating image:', error);
+                showNotification('Gagal mengunduh gambar struk', 'error');
+            });
+        }
+        
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            
+            notificationMessage.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Fungsi untuk format mata uang
+        function formatCurrency(amount) {
+            return `Rp ${amount.toLocaleString('id-ID')}`;
+        }
+        
+        // Tambahkan event listener untuk input yang memicu update struk
+        const formInputs = document.querySelectorAll('.form-control');
+        formInputs.forEach(input => {
+            input.addEventListener('input', updateReceipt);
+        });
+        
+        // Inisialisasi item pertama
+        updateReceipt();
+    </script>
+</body>
+</html>
