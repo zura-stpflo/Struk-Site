@@ -1,14 +1,14 @@
 [
   {
     "id": "STR-1001",
-    "sellerName": "Ã¡Â´ÂÃÂÃ¡Â´Âx ÃÂÃ¡Â´ÂsÃ¡Â´ÂÃÂªÃÂ´ÃÂ¢",
+    "sellerName": "ÃÂ¡ÃÂ´ÃÂÃÂÃÂÃÂ¡ÃÂ´ÃÂx ÃÂÃÂÃÂ¡ÃÂ´ÃÂsÃÂ¡ÃÂ´ÃÂÃÂÃÂªÃÂÃÂ´ÃÂÃÂ¢",
     "companyName": "Alex Store",
     "date": "2026-01-10T14:51:44.953Z",
     "dateFormatted": "10/1/2026",
     "timeFormatted": "21.51.44",
     "items": [
       {
-        "name": "Ã¡Â´ÂÃ¡Â´ÂÃÂ´Ã¡Â´ÂÃÂ Ã¡Â´ÂÃÂ´ÃÂÃÂª",
+        "name": "ÃÂ¡ÃÂ´ÃÂÃÂ¡ÃÂ´ÃÂÃÂÃÂ´ÃÂ¡ÃÂ´ÃÂÃÂÃÂ ÃÂ¡ÃÂ´ÃÂÃÂÃÂ´ÃÂÃÂÃÂÃÂª",
         "price": 10000,
         "quantity": 1,
         "subtotal": 10000
@@ -23,7 +23,7 @@
   },
   {
     "id": "STR-1002",
-    "sellerName": "á´Êá´x Êá´sá´ÉªÉ´É¢",
+    "sellerName": "Ã¡Â´ÂÃÂÃ¡Â´Âx ÃÂÃ¡Â´ÂsÃ¡Â´ÂÃÂªÃÂ´ÃÂ¢",
     "companyName": "Alex JB ",
     "date": "2026-01-10T20:51:30.418Z",
     "dateFormatted": "11/1/2026",
@@ -45,7 +45,7 @@
   },
   {
     "id": "STR-1002",
-    "sellerName": "ᴀʟᴇx ʜᴏsᴛɪɴɢ",
+    "sellerName": "á´Êá´x Êá´sá´ÉªÉ´É¢",
     "companyName": "Alex JB ",
     "date": "2026-01-10T20:51:43.174Z",
     "dateFormatted": "11/1/2026",
@@ -64,5 +64,27 @@
     "change": 0,
     "paymentStatus": "lunas",
     "savedAt": "2026-01-10T20:51:43.175Z"
+  },
+  {
+    "id": "STR-1004",
+    "sellerName": "Akbar",
+    "companyName": "Fayzen Store",
+    "date": "2026-01-11T00:39:49.256Z",
+    "dateFormatted": "11/1/2026",
+    "timeFormatted": "07.39.49",
+    "items": [
+      {
+        "name": "Desain GF",
+        "price": 1000,
+        "quantity": 1,
+        "subtotal": 1000
+      }
+    ],
+    "totalItems": 1,
+    "totalPrice": 1000,
+    "cashPaid": 1000,
+    "change": 0,
+    "paymentStatus": "lunas",
+    "savedAt": "2026-01-11T00:39:49.258Z"
   }
 ]
